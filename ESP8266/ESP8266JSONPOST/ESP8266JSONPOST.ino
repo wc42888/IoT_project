@@ -17,7 +17,7 @@ char MAC_char[18];
 
 //StaticJsonBuffer<200> jsonBuffer;
 
-const char* host="10.1.1.9";
+const char* host="45.63.31.219";
 //String postData = "username=gateway&iot=AWS&isDone=false&hasAttachment=false";
 //String postData = "{\"username\":\"gateway\",\"timestamp\":\"123456 12:34:56\",\"iot\":\"IOT\",\"isDone\":\"false\",\"hasAttachment\":\"false\"}";
 //unsigned int localPort = 2390;      // local port to listen for UDP packets
@@ -262,6 +262,31 @@ void loop() {
         //Serial.println(postData);
 
         */
+        postData = "{";
+        
+        postData +=  "\"eventid\": \"12347\",",
+        postData +=  "\"datetime\": \"20170511000000\",",
+        postData +=  "\"lat\": \"-33.82074\",",
+        postData +=  "\"lng\": \"151.094807\",",
+        postData +=  "\"sats\": \"11\",",
+        postData +=  "\"gX\": \"120\",",
+        postData +=  "\"gY\": \"130\",",
+        postData +=  "\"gZ\": \"140\",",
+        postData +=  "\"yaw\": \"150\",",
+        postData +=  "\"pitch\": \"160\",",
+        postData +=  "\"roll\": \"170\",",
+        postData +=  "\"totalEngineHours\": \"65421\",",
+        postData +=  "\"totalFuelConsumption\": \"12345\",",
+        postData +=  "\"currentFuelRate\": \"10000\",",
+        postData +=  "\"totalIdleFuel\": \"20000\",",
+        postData +=  "\"totalIdleHour\": \"98765\",",
+        postData +=  "\"engineRPM\": \"54321\",",
+        postData +=  "\"oilTemperature\": \"33.4\",",
+        postData +=  "\"coolantTemperature\": \"27.8\",",
+        postData +=  "\"vehicleSpeed\": \"10\",",
+        postData +=  "\"gearSelection\": \"5\",",
+        postData +=  "}"; 
+      
         updateIOTCloud(postData);  
         //Serial.print(NTP.getTimeDateString());
     }
