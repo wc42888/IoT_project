@@ -73,7 +73,7 @@ void updateIOTCloud(String iotData) {
     if (client.connect(host, localPort)) {    
            
         client.print("POST /api/iot HTTP/1.1\n");
-        client.print("Host: 10.1.1.9\n");
+        client.print("Host: 45.63.31.219:3000\n");
         client.print("Connection: close\n");
         //client.print("Content-Type: application/x-www-form-urlencoded\n");
         client.print("Content-Type: application/json\n");
@@ -85,17 +85,17 @@ void updateIOTCloud(String iotData) {
         lastConnectionTime = millis();
 
         if (client.connected()) {
-            //Serial.println("Connecting to ThingSpeak...");
+            Serial.println("Connecting to ThingSpeak...");
             //Serial.println();
             failedCounter = 0;
         } else {
             failedCounter++;
-            //Serial.println("Connection to IOT cloud failed ("+String(failedCounter, DEC)+")");   
+            Serial.println("Connection to IOT cloud failed ("+String(failedCounter, DEC)+")");   
             //Serial.println();
         }
     } else {
         failedCounter++;
-        //Serial.println("Connection to ThingSpeak Failed ("+String(failedCounter, DEC)+")");   
+        Serial.println("Connection to ThingSpeak Failed ("+String(failedCounter, DEC)+")");   
         //Serial.println();
         lastConnectionTime = millis(); 
     }
@@ -262,9 +262,37 @@ void loop() {
         //Serial.println(postData);
 
         */
+        
+        postData = "{";
+        postData +=  "\"eventid\": 12348,",
+        postData +=  "\"datetime\": \"20170511000000\",",
+        postData +=  "\"lat\": -33.82074,",
+        postData +=  "\"lng\": 151.094807,",
+        postData +=  "\"sats\": 11,",
+        postData +=  "\"gX\": 120,",
+        postData +=  "\"gY\": 130,",
+        postData +=  "\"gZ\": 140,",
+        postData +=  "\"yaw\": 150,",
+        postData +=  "\"pitch\": 160,",
+        postData +=  "\"roll\": 170,",
+        postData +=  "\"totalEngineHours\": 65421,",
+        postData +=  "\"totalFuelConsumption\": 12345,",
+        postData +=  "\"currentFuelRate\": 10000,",
+        postData +=  "\"totalIdleFuel\": 20000,",
+        postData +=  "\"totalIdleHour\": 98765,",
+        postData +=  "\"engineRPM\": 54321,",
+        postData +=  "\"oilTemperature\": 33.4,",
+        postData +=  "\"coolantTemperature\": 27.8,",
+        postData +=  "\"vehicleSpeed\": 10,",
+        postData +=  "\"gearSelection\": 5",
+        postData +=  "}"; 
+
+        Serial.println(postData);
+      
+        /*
         postData = "{";
         
-        postData +=  "\"eventid\": \"12347\",",
+        postData +=  "\"eventid\": \"12348\",",
         postData +=  "\"datetime\": \"20170511000000\",",
         postData +=  "\"lat\": \"-33.82074\",",
         postData +=  "\"lng\": \"151.094807\",",
@@ -286,7 +314,7 @@ void loop() {
         postData +=  "\"vehicleSpeed\": \"10\",",
         postData +=  "\"gearSelection\": \"5\",",
         postData +=  "}"; 
-      
+      */
         updateIOTCloud(postData);  
         //Serial.print(NTP.getTimeDateString());
     }
